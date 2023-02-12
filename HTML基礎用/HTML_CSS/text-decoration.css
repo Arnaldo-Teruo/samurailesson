@@ -1,0 +1,23 @@
+.decoration {
+    font-size: 25px;
+    color: rgb(255,0,0);
+    font-weight: bold;
+    font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic";
+    font-style: italic;
+    line-height: 2;
+    letter-spacing: 1.5em;
+    text-decoration: line-through;
+    border-top: solid 3px red;
+    border-bottom: dotted 3px blue;
+    border-left: dashed 3px green;
+    border-right: double 3px yellow;
+    background-color: gray;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+}
+.text-bold {
+    font-weight: bolder;
+    font-size: 20px;
+    color: red;
+
+}

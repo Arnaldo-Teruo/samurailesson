@@ -1,0 +1,45 @@
+.flexbox-container {
+    display: flex;
+height: 500px;
+    padding: 5px;
+    background-color: lightcyan;
+    align-items: center;
+}
+.flexbox-item {
+    /* 「flex-growの値 flex-shrinkの値 flex-basisの値」の順で一括指定します */
+    flex: 0 1 auto;
+    padding: 5px;
+    margin: 5px;
+    background-color: orange;
+}
+#item01 {
+
+align-self: start;
+}
+#item02 {
+
+
+}
+#item03 {
+
+    align-self: center;
+}
+#item04 {
+  
+}
+#item05 {
+
+    align-self: flex-end;
+}
+#item06 {
+
+}
+#item07 {
+
+    align-self: baseline;
+
+}
+#item08 {
+
+
+}
