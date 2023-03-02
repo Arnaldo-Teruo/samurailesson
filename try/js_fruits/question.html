@@ -1,119 +1,188 @@
 <!doctype html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>フルーツ課題 Javascript編</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <style>
-    body { padding: 3rem 0; }
-    .help:before { content: "ヒント：" }
-    .card:not(:last-child) { margin-bottom: 2rem; }
-    .green { color: green; background-color: #c3ffc3; }
-    .pink { color: pink; background-color: #ee7c90; }
-    .orange { color: orange; background-color: #ffe2ad; }
-    .red { color: white; background-color: red; }
-    .yellow { color: yellow; background-color: #d9d909; }
+    body {
+      padding: 3rem 0;
+    }
+
+    .help:before {
+      content: "ヒント："
+    }
+
+    .card:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    .green {
+      color: green;
+      background-color: #c3ffc3;
+    }
+
+    .pink {
+      color: pink;
+      background-color: #ee7c90;
+    }
+
+    .orange {
+      color: orange;
+      background-color: #ffe2ad;
+    }
+
+    .red {
+      color: white;
+      background-color: red;
+    }
+
+    .yellow {
+      color: yellow;
+      background-color: #d9d909;
+    }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  
-  <h1 class="alert alert-danger">フルーツ課題 Javascript編</h1>
+  <div class="container">
+
+    <h1 class="alert alert-danger">フルーツ課題 Javascript編</h1>
 
 
-  <div class="card">
-    <div class="card-header">
-      <i class="fas fa-hand-point-right"></i>
-      let fruits からループ処理で横並びにフルーツ達を表示してみよう！
-    </div>
-    <div class="card-body">
-      <p>フルーツ達は</p>
-      <ul id="fruitsList" class="list-group list-group-horizontal">
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-      </ul>
-      <small>※「dummy」は消してね!</small>
-    </div>
-    <div class="card-footer">
-      <div class="help">
-        liタグを ループ処理しよう
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-hand-point-right"></i>
+        let fruits からループ処理で横並びにフルーツ達を表示してみよう！
       </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <i class="fas fa-hand-point-right"></i>
-      上課題同様にフルーツの表示と、さらに let colors を利用してフルーツたちに色をつけよう！
-    </div>
-    <div class="card-body">
-      <ul id="fruitsListColor" class="list-group list-group-horizontal">
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-        <li class="list-group-item">dummy</li>
-      </ul>
-      <small>※「dummy」は消してね!</small>
-    </div>
-    <div class="card-footer">
-      <div class="help">
-        let fruits をループ処理したときのキーを利用すれば let colors と let fruits を連動させることができるよ
+      <div class="card-body">
+        <p>フルーツ達は</p>
+        <ul id="fruitsList" class="list-group list-group-horizontal">
+          <li class="list-group-item">1</li>
+          <li class="list-group-item">2</li>
+          <li class="list-group-item">3</li>
+          <li class="list-group-item">4</li>
+          <li class="list-group-item">5</li>
+        </ul>
+        <small>※「dummy」は消してね!</small>
       </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <i class="fas fa-hand-point-right"></i>
-      メロンの確率を多くして、バナナの確率を下げよう！
-    </div>
-    <div class="card-body">
-      <p>トムの好きなフルーツがボタンを押すとランダムに決まるよ</p>
-      <div class="d-flex align-items-center">
-        <form action="#" method="post">
-          <div class="mr-5">
-            <button onclick="changeFruits()" type="submit" class="btn btn-primary">ボタン</button>
-          </div>
-        </form>
-        <div>
-          <b id="exportFruits"></b>
+      <div class="card-footer">
+        <div class="help">
+          liタグを ループ処理しよう
         </div>
       </div>
     </div>
-    <div class="card-footer">
-      <div class="help">
-        配列の調整だけでも可能だけど、if文 や switch でも可能だよ
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-hand-point-right"></i>
+        上課題同様にフルーツの表示と、さらに let colors を利用してフルーツたちに色をつけよう！
+      </div>
+      <div class="card-body">
+        <ul id="fruitsListColor" class="list-group list-group-horizontal">
+          <li name=fruitsList class="list-group-item">dummy</li>
+          <li name=fruitsList class="list-group-item">dummy</li>
+          <li name=fruitsList class="list-group-item">dummy</li>
+          <li name=fruitsList class="list-group-item">dummy</li>
+          <li name=fruitsList class="list-group-item">dummy</li>
+        </ul>
+        <small>※「dummy」は消してね!</small>
+      </div>
+      <div class="card-footer">
+        <div class="help">
+          let fruits をループ処理したときのキーを利用すれば let colors と let fruits を連動させることができるよ
+        </div>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-hand-point-right"></i>
+        メロンの確率を多くして、バナナの確率を下げよう！
+      </div>
+      <div class="card-body">
+        <p>トムの好きなフルーツがボタンを押すとランダムに決まるよ</p>
+        <div class="d-flex align-items-center">
+          <!-- <form action="#" method="post"> -->
+          <div class="mr-5">
+            <button id="changeFruits" class="btn btn-primary">ボタン</button>
+          </div>
+          <!-- </form> -->
+          <div>
+            <p id="exportFruits" style="font-weight: bold;"></p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="help">
+          配列の調整だけでも可能だけど、if文 や switch でも可能だよ
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  <!-- jQuery、Popper.js、Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
-<!-- jQuery、Popper.js、Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+    let fruits = ['メロン', 'りんご', 'みかん', 'いちご', 'バナナ'];
+    let colors = ['green', 'pink', 'orange', 'red', 'yellow'];
 
-<script>
-let fruits = ['メロン', 'りんご', 'みかん', 'いちご', 'バナナ'];
-let colors = ['green', 'pink', 'orange', 'red', 'yellow'];
-let number = Math.floor(Math.random () * fruits.length);
 
-$(function(){
-  changeFruits();
-});
+    const fruitsList = document.getElementById('fruitsList');
 
-function changeFruits(){
-  let exportFruits = $("#exportFruits");
-  exportFruits.text(fruits[number]);
-}
-</script>
+
+    for (let i = 0; i < fruitsList.children.length; i++) {
+      const li = fruitsList.children[i];
+      li.textContent = fruits[i];
+    }
+
+
+    for (let i = 0; i < fruitsListColor.children.length; i++) {
+      const li = fruitsListColor.children[i];
+      li.textContent = fruits[i];
+      li.style.backgroundColor = colors[i];
+      li.style.fontWeight = 'bold'
+    }
+    const changeFruits = document.getElementById('changeFruits');
+
+    changeFruits.addEventListener('click', () => {
+      let number = Math.floor(Math.random() * 11);
+      console.log(number)
+      const exportFruits = document.getElementById('exportFruits');
+      switch (number) {
+        case 0: case 1: case 2: case 10:
+          exportFruits.textContent = 'メロン';
+          break;
+        case 3: case 4:
+          exportFruits.textContent = 'りんご';
+          break;
+        case 5: case 6:
+          exportFruits.textContent = 'みかん';
+          break;
+        case 7: case8:
+          exportFruits.textContent = 'いちご';
+          break;
+        case 9:
+          exportFruits.textContent = 'バナナ';
+          break;
+      }
+    })
+  </script>
 </body>
+
 </html>
