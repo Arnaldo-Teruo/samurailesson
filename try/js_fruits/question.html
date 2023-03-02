@@ -62,6 +62,7 @@
       </div>
       <div class="card-body">
         <p>フルーツ達は</p>
+        <!-- 今回は初めからli要素が５つと決まっていたが、配列の要素数に随時合わせることになると困ることになる candy -->
         <ul id="fruitsList" class="list-group list-group-horizontal">
           <li class="list-group-item">1</li>
           <li class="list-group-item">2</li>
@@ -84,6 +85,7 @@
         上課題同様にフルーツの表示と、さらに let colors を利用してフルーツたちに色をつけよう！
       </div>
       <div class="card-body">
+        <!-- 今回は初めからli要素が５つと決まっていたが、配列の要素数に随時合わせることになると困ることになる candy -->
         <ul id="fruitsListColor" class="list-group list-group-horizontal">
           <li name=fruitsList class="list-group-item">dummy</li>
           <li name=fruitsList class="list-group-item">dummy</li>
@@ -108,12 +110,14 @@
       <div class="card-body">
         <p>トムの好きなフルーツがボタンを押すとランダムに決まるよ</p>
         <div class="d-flex align-items-center">
+          <!-- 確かに、このformの使い方ではエラーが出る、PHPの時にformの勉強を詳しくします candy -->
           <!-- <form action="#" method="post"> -->
           <div class="mr-5">
             <button id="changeFruits" class="btn btn-primary">ボタン</button>
           </div>
           <!-- </form> -->
           <div>
+            <!-- HTMLタグに直接styleを書くのはあまりよくない、どうしようもない時に取っておいたほうがよい candy -->
             <p id="exportFruits" style="font-weight: bold;"></p>
           </div>
         </div>
