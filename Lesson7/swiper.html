@@ -6,32 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <title>Lesson7</title>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" /> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+  <style>
+    .swiper-slide img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Lesson7</h1>
 
-    <!-- Swiper START -->
-    <div class="swiper-container">
-      <!-- メイン表示部分 -->
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
-        <!-- 各スライド -->
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        <div class="swiper-slide">Slide 4</div>
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <img src="https://image.itmedia.co.jp/business/articles/2202/22/l_ko_neko_00.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://dol.ismcdn.jp/mwimgs/5/d/600/img_7e0b8adba77c91687a8078920dedc7be160077.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://img.pretty-online.jp/wp-content/uploads/2021/01/18170137/lifestyle_nekokeiro_eye.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://cdn.r-corona.jp/prd.rb.r-corona.jp/assets/site_files/158va4e2/2088905/lzf5_w750.jpg" alt="">
+        </div>
       </div>
+      <!-- 必要に応じてページネーション -->
+      <div class="swiper-pagination"></div>
+      <!-- 必要に応じてナビボタン -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
-    <!-- Swiper END -->
-
-
 
   </div>
 
@@ -39,13 +53,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
   <script>
-    var mySwiper = new Swiper('.swiper-container', {
-      direction: 'vertical',
-      mousewheel: {
-        forceToAxis: false,
-        invert: false
+    const swiper = new Swiper(".swiper", {
+      // ページネーションが必要なら追加
+      pagination: {
+        el: ".swiper-pagination"
       },
-      keyboard: true
+      // ナビボタンが必要なら追加
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
     });
   </script>
 
