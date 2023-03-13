@@ -17,6 +17,10 @@
             font-weight: bold;
             color: green;
         }
+
+        .small {
+            font-size: 30px;
+        }
     </style>
 </head>
 
@@ -82,11 +86,11 @@
             const endDayCount = endDate.getDate() // 月の末日
             const lastMonthEndDate = new Date(year, month - 1, 0) // 前月の最後の日の情報
             const lastMonthendDayCount = lastMonthEndDate.getDate() // 前月の末日
-            const startDay = startDate.getDay() // 月の最初の日の曜日を取得
+            const startDay = startDate.getDay()-1 // 月の最初の日の曜日を取得
             let dayCount = 1 // 日にちのカウント
             let calendarHtml = '' // HTMLを組み立てる変数
 
-            calendarHtml += '<h1><span style = "font-size: 30px;">' + year + '</span>/' + month + '</h1>' //spanで年だけを囲って小さくした teruo
+            calendarHtml += '<h1><span class="small">' + year + '</span>/' + month + '</h1>' //spanで年だけを囲って小さくした teruo
             calendarHtml += '<table class="table">'
 
             // 曜日の行を作成
@@ -114,7 +118,7 @@
                     }
                     if (w == 0 && d < startDay) {
                         // 1行目で1日の曜日の前
-                        let num = lastMonthendDayCount - startDay + d + 1
+                        let num = lastMonthendDayCount - startDay + d + 1 
                         calendarHtml += '<td class="disabled" style="background-color: ' + backgroundColor + '">' + num + '</td>'
                     } else if (dayCount > endDayCount) {
                         // 末尾の日数を超えた
