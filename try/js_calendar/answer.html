@@ -86,7 +86,7 @@
             const endDayCount = endDate.getDate() // 月の末日
             const lastMonthEndDate = new Date(year, month - 1, 0) // 前月の最後の日の情報
             const lastMonthendDayCount = lastMonthEndDate.getDate() // 前月の末日
-            const startDay = startDate.getDay()-1 // 月の最初の日の曜日を取得
+            const startDay = startDate.getDay()-1 // 月の最初の日の曜日を取得 <-ここに“-1”を追加しました
             let dayCount = 1 // 日にちのカウント
             let calendarHtml = '' // HTMLを組み立てる変数
 
