@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>カレンダーを改造しよう！</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+  <style>
+    .disabled {
+      color: rgb(182, 182, 182);
+    }
+    .sun {
+      color: red;
+    }
+    .sat {
+      color: blue;
+    }
+    .today {
+      font-weight: 900;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header class="text-center py-5">
+    <h1 class="alert alert-info">カレンダーを改造しよう！</h1>
+  </header>
+  <div class="row">
+    <div class="col-8">
+      <ul class="list-group">
+        <li class="list-group-item">3ヶ月分表示を2ヶ月分にしてみよう</li>
+        <li class="list-group-item">年のフォントサイズを小さめにしてみよう</li>
+        <li class="list-group-item">「土」を青色、「日」を赤色にしてみよう</li>
+        <li class="list-group-item">「今日」のフォントを太字で緑色にしてみよう</li>
+        <li class="list-group-item">月曜日始まりにしてみよう</li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <div class="d-flex justify-content-between">
+        <button id="prev" type="button" class="btn btn-primary">前の月</button>
+        <button id="next" type="button" class="btn btn-primary">次の月</button>
+      </div>
+      <hr>
+      <div id="calendar"></div>
+    </div>
+  </div>
+  <footer>
+    <div class="text-center py-4 alert-secondary">
+      &copy; All rights reserved candy.
+    </div>
+  </footer>
+</div>
+
+<!-- jQuery、Popper.js、Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+const weeks = ['月', '火', '水', '木', '金', '土', '日']
+const date = new Date();
+let year = date.getFullYear();
+let month = date.getMonth() + 1;
+let day = date.getDate();
+let ymd = String(year) + String(month) + String(day);
+const config = {
+  show: 2,
+}
+function showCalendar(year, month) {
+  for ( i = 0; i < config.show; i++) {
+    const calendarHtml = createCalendar(year, month)
+    const sec = document.createElement('section')
+    sec.innerHTML = calendarHtml
+    document.querySelector('#calendar').appendChild(sec)
+    month++
+    if (month > 12) {
+      year++
+      month = 1
+    }
+  }
+}
+function createCalendar(year, month) {
+  const startDate = new Date(year, month - 1, 1) // 月の最初の日を取得
+  const endDate = new Date(year, month,  0) // 月の最後の日を取得
+  const endDayCount = endDate.getDate() // 月の末日
+  const lastMonthEndDate = new Date(year, month - 1, 0) // 前月の最後の日の情報
+  const lastMonthendDayCount = lastMonthEndDate.getDate() // 前月の末日
+  const startDay = startDate.getDay() // 月の最初の日の曜日を取得
+  let dayCount = 1 // 日にちのカウント
+  let calendarHtml = '' // HTMLを組み立てる変数
+  
+  calendarHtml += '<h1><small>' + year  + '</small>/' + month + '</h1>'
+  calendarHtml += '<table class="table">'
+  
+  // 曜日の行を作成
+  calendarHtml += '<tr>';
+  let classYoubi = "";
+  for (let i = 0; i < weeks.length; i++) {
+    classYoubi = "";
+    if (i === 6) {
+      classYoubi = ' class="sun"';
+    }
+    if (i === 5) {
+      classYoubi = ' class="sat"';
+    }
+    calendarHtml += '<td' + classYoubi + '>' + weeks[i] + '</td>'
+  }
+  calendarHtml += '</tr>';
+  for (let w = 0; w < 6; w++) {
+    calendarHtml += '<tr>'
+    for (let d = 1; d < 8; d++) {
+      if (w == 0 && d < startDay) {
+        // 1行目で1日の曜日の前
+        let num = lastMonthendDayCount - startDay + d + 1
+        calendarHtml += '<td class="disabled">' + num + '</td>'
+      } else if (dayCount > endDayCount) {
+        // 末尾の日数を超えた
+        let num = dayCount - endDayCount
+        calendarHtml += '<td class="disabled">' + num + '</td>'
+        dayCount++
+      } else if (ymd === String(year) + String(month) + String(dayCount)) {
+        // 今日の場合
+        calendarHtml += '<td class="today">' + dayCount + '</td>'
+        dayCount++
+      } else {
+        calendarHtml += '<td>' + dayCount + '</td>'
+        dayCount++
+      }
+    }
+    calendarHtml += '</tr>'
+  }
+  calendarHtml += '</table>'
+  return calendarHtml
+}
+  
+function moveCalendar(e) {
+  document.querySelector('#calendar').innerHTML = ''
+  if (e.target.id === 'prev') {
+    month--
+    
+    if (month < 1) {
+      year--
+      month = 12
+    }
+  }
+  if (e.target.id === 'next') {
+    month++
+    if (month > 12) {
+      year++
+      month = 1
+    }
+  }
+  showCalendar(year, month)
+}
+document.querySelector('#prev').addEventListener('click', moveCalendar)
+document.querySelector('#next').addEventListener('click', moveCalendar)
+showCalendar(year, month)
+</script>
+</body>
+</html>
