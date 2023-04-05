@@ -1,0 +1,12 @@
+label {
+  font-size: 1.4rem;
+}
+.form-group {
+  margin-bottom: 2rem;
+}
+.errorMessage {
+  color: red;
+}
+.errorMessage:before {
+  content: "※";
+}
