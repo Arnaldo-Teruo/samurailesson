@@ -1,0 +1,80 @@
+/**
+ * 共通
+ */
+ h2 {
+  font-size: 1.4rem;
+}
+h4 {
+  font-size: 1.2rem;
+}
+
+/**
+ * グローバルナビ
+ * @path /components/Header.vue
+ */
+.navbar-brand a {
+  color: white;
+}
+
+/**
+ * ユーザー登録
+ * @path /pages/index.vue
+ */
+table.registerUser th,
+table.registerUser td {
+  padding: 0.5rem;
+}
+table.signIn th,
+table.signIn td {
+  padding: 1rem;
+}
+
+
+/**
+ * 検索ページのお気に入りアイコン
+ * @path /pages/search.vue
+ */
+td.favorite {
+  text-align: center;
+  vertical-align: middle;
+}
+td.favorite > svg{
+  color: gray;
+  font-size: 1.5rem;
+  transition: all 0.3s 0s ease;
+}
+td.favoriteOn > svg {
+  color: pink;
+  font-size: 2rem;
+  transform: perspective(500px) translateZ(100px);
+}
+
+/**
+ * 映画詳細ページのお気に入りアイコン
+ * @path /pages/movie/_id/index.vue
+ */
+.favoriteIcon {
+  animation: heartPoyoyon 1s ease-in-out 1 forwards;
+}
+@keyframes heartPoyoyon {
+  0%  {
+    transform: scale(1.0, 1.0) translate(0, 0);
+  }
+  15% {
+    transform: scale(0.98, 0.9) translate(0, 5px);
+  }
+  30% {
+    transform: scale(1.02, 1.0) translate(0, 8px);
+  }
+  50% {transform: scale(0.98, 1.05) translate(0, -8px);
+  }
+  70% {
+    transform: scale(1.0, 0.9) translate(0, 5px);
+  }
+  100% {
+    transform: scale(1.0, 1.0) translate(0, 0);
+  }
+  0%, 100% {
+    opacity: 1;
+  }
+}

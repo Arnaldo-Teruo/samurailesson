@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.jsのcomputedとmethodsの使い分け</title>
+  </head>
+<body>
+  <div id="app">
+    <div>
+      <ul v-for="item in items">
+        <li>
+          <span>{{ item.name }}</span>&nbsp;|&nbsp;
+          <span>{{ item.price }}円</span>&nbsp;*&nbsp;
+          <span><input type="number" v-model:value="item.quantity"></span>&nbsp;=&nbsp;
+          <span>{{ item.price * item.quantity }}円</span>
+        </li>
+      </ul>
+      <div>合計金額：{{ totalPriceWithTax }}円(税込)</div>
+      <button @click="doBuy">購入する</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+  <script>
+    var items = [
+      { name: 'レモン', price: 100, quantity: 2 },
+      { name: 'りんご', price: 200, quantity: 1 },
+      { name: 'メロン', price: 800, quantity: 1 }
+    ];
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        items: items
+      },
+      computed: {
+        // 合計金額
+        totalPrice: function() {
+          return this.items.reduce(function(sum, item) {
+            return sum + (item.price * item.quantity);
+          }, 0)
+        },
+        // 合計金額(税込)
+        totalPriceWithTax: function() {
+          return Math.floor(this.totalPrice * 1.08);
+        }
+      },
+      methods: {
+        doBuy: function() {
+          window.alert(this.totalPriceWithTax + '円のお買い上げです。ありがとうございました。');
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>住所API Vue表示</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div id="app">
+  <div class="container py-4">
+    <h1 class="alert alert-success">{{ title }}</h1>
+    <select v-model="prefecture" @change="selectedPrefecture(prefecture)">
+      <option value="">選択してください</option>
+      <option v-for="prefecture in prefectures" v-text="prefecture"></option>
+    </select>
+    <ol>
+      <li v-for="city in cities" v-text="city.city + '(' + city.city_kana + ')'"></li>
+    </ol>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    title: "住所API Vue表示",
+    prefectures: "",
+    prefecture: "",
+    cities: "",
+  },
+  mounted() {
+    this.getPrefectures();
+  },
+  methods: {
+    selectedPrefecture(prefecture){
+      this.getCities(prefecture);
+    },
+    getPrefectures(){
+      axios.get('http://geoapi.heartrails.com/api/json?method=getPrefectures')
+        .then( response => {
+          this.prefectures = response.data.response.prefecture;
+        })
+        .catch( err => {
+        })
+    },
+    getCities(prefecture){
+      axios.get('http://geoapi.heartrails.com/api/json?method=getCities&prefecture=' + prefecture)
+        .then( response => {
+            this.cities = response.data.response.location;
+        })
+        .catch( err => {
+        })
+    }
+  }
+})
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

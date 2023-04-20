@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>おみくじ</title>
+	<style>
+		body {
+			color: rgb(33, 122, 122);
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>おみくじ</h1>
+
+	<script>
+		const kujiNames = ['大吉', '吉', '中吉', '小吉', '末吉', '凶'];
+		const kujiNumber = Math.floor(Math.random() * 6);
+		document.write('<p>あなたの今年の運勢は、' + kujiNames[kujiNumber] + 'です。');
+	</script>
+
+	<div>
+		<button id="refresh">更新するボタン（同期処理）</button>
+	</div>
+
+	<script>
+		document.getElementById("refresh").onclick = function () {
+			location.reload();
+		}
+	</script>
+
+	<br>
+
+	<div>
+		<div id="omikuji"></div>
+		<div>
+			<input type="button" id="action" value="関数を実行するボタン（非同期処理）" onclick="refresh()">
+		</div>
+	</div>
+
+	<script>
+		function refresh() {
+			// let kujisNames = ['大吉', '吉', '中吉', '小吉', '末吉', '凶'];
+			let kujiNumber = Math.floor(Math.random() * 6);
+			omikuji.innerHTML = '<p>あなたの今年の運勢は、' + kujiNames[kujiNumber] + 'です。';
+		}
+	</script>
+
+</body>
+
+</html>

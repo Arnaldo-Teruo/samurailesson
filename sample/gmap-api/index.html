@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta name="description" content="" />
+		<title>Google Map API Sample</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+		/>
+		<!-- <link rel="stylesheet" href="css/style.css"> -->
+		<style>
+			#map-canvas {
+				width: 100%;
+				height: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container py-4">
+			<h1 class="alert alert-info">Google Map API Sample</h1>
+			<h2 class="lead text-primary">アクセスと同時に取得した現在地データ</h2>
+			<div id="app">
+				<table class="table">
+					<tr>
+						<th>住所</th>
+						<td v-text="add"></td>
+					</tr>
+					<tr>
+						<th>緯度</th>
+						<td v-text="lat"></td>
+					</tr>
+					<tr>
+						<th>経度</th>
+						<td v-text="lng"></td>
+					</tr>
+					<tr>
+						<th>高度</th>
+						<td v-text="alt"></td>
+					</tr>
+					<tr>
+						<th>緯度、経度の精度</th>
+						<td v-text="accLatlng"></td>
+					</tr>
+					<tr>
+						<th>高度の精度</th>
+						<td v-text="accAlt"></td>
+					</tr>
+					<tr>
+						<th>方角</th>
+						<td v-text="heading"></td>
+					</tr>
+					<tr>
+						<th>速度</th>
+						<td v-text="speed"></td>
+					</tr>
+					<tr>
+						<th>2km以内のお店</th>
+						<td>
+							<ol v-if="neighborhoodList.length > 0" class="p-0">
+								<li v-for="(v, i) in neighborhoodList" v-text="v.title + ' - ' + v.distanceText"></li>
+							</ol>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<hr>
+			<h2 class="lead text-primary">地図</h2>
+			<div id="map-canvas"></div>
+			<hr />
+			<footer class="text-center">
+				<div class="copyright">&copy; candy.</div>
+			</footer>
+		</div>
+		<!-- jQuery、Popper.js、Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd8AQk_r2j-LrgVTlp2Rcck-aTEZXOJ7Q"
+			charset="utf-8"
+		></script>
+		<script>
+			let app = new Vue({
+				el: "#app",
+				data: {
+					lat: "ido",
+					lng: "keido",
+					alt: "kodo",
+					accLatlng: "ikseido",
+					accAlt: "koseido",
+					heading: "hougaku",
+					speed: "sokudo",
+          add: "",
+          map: "",
+          markerData: [
+            {
+              title: "れんまろ",
+              lat: 26.31495548763149,
+              lng: 127.82461992146823,
+							distanceText:"",
+							distanceValue:"",
+              // icon: "tam.png",
+            },
+            {
+              title: "石松",
+              lat: 26.313974547987467,
+              lng: 127.83056369635068,
+							distanceText:"",
+							distanceValue:"",
+            },
+            {
+              title: "キーウェスト",
+              lat: 26.31841756116248,
+              lng: 127.82592883940261,
+							distanceText:"",
+							distanceValue:"",
+            }
+          ],
+          marker: [],
+          infoWindow: [],
+					neighborhoodList: [],
+				},
+				mounted: function () {
+					this.getPosition();
+				},
+				methods: {
+					getPosition() {
+						navigator.geolocation.getCurrentPosition(
+							(position) => {
+								let data = position.coords;
+								this.lat = data.latitude;
+								this.lng = data.longitude;
+								this.alt = data.altitude;
+								this.accLatlng = data.accuracy;
+								this.accAlt = data.altitudeAccuracy;
+								this.heading = data.heading;
+								this.speed = data.speed;
+								this.add = "error";
+								let geocoder = new google.maps.Geocoder();
+								let latlng = new google.maps.LatLng(this.lat, this.lng);
+								geocoder.geocode({ latLng: latlng }, (results, status) => {
+									if (status == "OK") {
+										this.add = results[0].formatted_address;
+									}
+								});
+								let map = new google.maps.Map(document.getElementById("map-canvas"), {
+									zoom: 15,
+									center: latlng,
+								});
+								new google.maps.Marker({
+									map: map,
+									position: latlng,
+                  icon: {
+                    url: 'img/home-solid.svg',
+										scaledSize : new google.maps.Size(35, 35)
+                  }
+                });
+                let marker = [];
+                let infoWindow = [];
+                let currentInfoWindow = null;
+                for (let i = 0; i < this.markerData.length; i++){
+									const service = new google.maps.DistanceMatrixService();
+									const matrixOptions = {
+										origins: [this.lat + "," + this.lng],
+										destinations: [Number(this.markerData[i]['lat']) + "," + Number(this.markerData[i]['lng'])],
+										travelMode: 'DRIVING',
+										unitSystem: google.maps.UnitSystem.METRIX
+									};
+									let self = i;
+									let selfthis = this;
+									service.getDistanceMatrix(matrixOptions, callback);
+									function callback(response, status) {
+										if (status !== "OK") {
+											alert("Error with distance matrix");
+											return;
+										}
+										selfthis.markerData[self]['distanceText'] = response.rows[0].elements[0].distance.text;
+										selfthis.markerData[self]['distanceValue'] = response.rows[0].elements[0].distance.value;
+										infoWindow[i] = new google.maps.InfoWindow({
+                    	content: '<div class="infoWindow"><div>' + selfthis.markerData[i]['title'] + '</div><div id="distance' + i + '">' + selfthis.markerData[i]['distanceText'] + '</div></div>'
+                  	});
+										if ( selfthis.markerData[self]['distanceValue'] < 2000 ) {
+											let text = selfthis.markerData[self]['distanceText'];
+											let title = selfthis.markerData[self]['title'];
+											selfthis.neighborhoodList.push({title: title, distanceText: text});
+										}
+									}
+                  let markerLatLng = new google.maps.LatLng({lat: Number(this.markerData[i]['lat']), lng: Number(this.markerData[i]['lng'])});
+                  marker[i] = new google.maps.Marker({
+                    position: markerLatLng,
+                    map: map
+									});
+                  markerEvent(i);
+                }
+                function markerEvent(i) {
+                  marker[i].addListener('click', function() {
+                    if (currentInfoWindow) {
+                      currentInfoWindow.close();
+                    }
+                    infoWindow[i].open(map, marker[i]);
+                    currentInfoWindow = infoWindow[i];
+                  });
+                }
+              },
+							(error) => {
+								let errorInfo = [
+									"原因不明のエラーが発生しました…。",
+									"位置情報の取得が許可されませんでした…。",
+									"電波状況などで位置情報が取得できませんでした…。",
+									"位置情報の取得に時間がかかり過ぎてタイムアウトしました…。",
+								];
+								let errorNo = error.code;
+								let errorMessage =
+									"[エラー番号: " + errorNo + "]\n" + errorInfo[errorNo];
+								alert(errorMessage);
+								document.getElementById("error").innerHTML = errorMessage;
+							},
+							{
+								enableHighAccuracy: false,
+								timeout: 8000,
+								maximumAge: 2000,
+							}
+						);
+          },
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -9,8 +9,16 @@ session_start();
 /**
  * セッションにフォームデータがあれば代入して無ければ空を代入
  */
+
+// 三項演算子 短い
 $post = isset($_SESSION['form']) ? $_SESSION['form'] : "";
 
+// if文 長い
+// if (isset($_SESSION['form'])) {
+//   $post = $_SESSION['form'];
+// }else{
+//   $post = "";
+// }
 
 /**
  * セッション内の各フォームデータを変数として初期化
@@ -36,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
    * $_POST の中身を全てサニタイズして $post に入れている（セキュリティ対策）
    */
   $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+  
   /**
    * バリデーション処理をしてエラーを追加していく
    */

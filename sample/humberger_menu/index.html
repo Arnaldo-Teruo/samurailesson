@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <title>ハンバーガーメニューの作り方</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
+  <link rel="stylesheet" href="highlight/styles/a11y-dark.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="navSp">
+    <div>
+      <span class="nav_toggle">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+      <nav class="sp">
+        <ul>
+          <li class="nav_menu_li">TOP</li>
+          <li class="nav_menu_li">ABOUT</li>
+          <li class="nav_menu_li">BLOG</li>
+          <li class="nav_menu_li">CONTACT</li>
+        </ul>
+      </nav>
+    </div>
+    <i class="fab fa-studiovinari"></i>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-auto sidebar">
+        <i class="fab fa-studiovinari d-none d-md-block mb-4 mt-2"></i>
+        <nav class="pc">
+          <ul>
+            <li>TOP</li>
+            <li>ABOUT</li>
+            <li>BLOG</li>
+            <li>CONTACT</li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col contents">
+        <h1 class="alert alert-primary">ハンバーガーメニューの作り方</h1>
+        <div id="app">
+          <item title="HTMLのhead" code='<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <title>ハンバーガーメニューの作り方</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
+  <link rel="stylesheet" href="highlight/styles/a11y-dark.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>'>
+          </item>
+          <item title="スマホ版グロナビのHTML" code='<div class="navSp">
+  <div>
+    <span class="nav_toggle">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+    <nav class="sp">
+      <ul>
+        <li class="nav_menu_li">TOP</li>
+        <li class="nav_menu_li">ABOUT</li>
+        <li class="nav_menu_li">BLOG</li>
+        <li class="nav_menu_li">CONTACT</li>
+      </ul>
+    </nav>
+  </div>
+  <i class="fab fa-studiovinari"></i>
+</div>'>
+          </item>
+          <item title="サイドバーのHTML" code='<div class="col-auto sidebar">
+  <i class="fab fa-studiovinari d-none d-md-block mb-4 mt-2"></i>
+  <nav class="pc">
+    <ul>
+      <li>TOP</li>
+      <li>ABOUT</li>
+      <li>BLOG</li>
+      <li>CONTACT</li>
+    </ul>
+  </nav>
+</div>'>
+          </item>
+          <item title="コンテンツのHTML" code='<div class="col contents">
+  <h1 class="alert alert-primary">ハンバーガーメニューの作り方</h1>
+  <div id="app">
+    <item
+      title="---------"
+      code="----------------"
+    </item>
+  </div>
+</div>'>
+          </item>
+          <item title="jQuery（javascript）によるグロナビの動的処理" code='<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+  $(".nav_toggle").on("click", function() {
+    $(".nav_toggle, nav.sp").toggleClass("show");
+  });
+</script>'>
+          </item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 text-center bg-info text-white">
+    <div>&copy; 2021 candy.</div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+  <script src="highlight/highlight.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script>
+    $(".nav_toggle").on("click", function () {
+      $(".nav_toggle, nav.sp").toggleClass("show");
+    });
+  </script>
+  <script>
+    hljs.initHighlightingOnLoad();
+
+    Vue.component("item", {
+      props: ["title", "code"],
+      template: `
+        <div class="wrap">
+          <h2>{{ title }}</h2>
+          <pre>
+            <code>{{ code }}</code>
+          </pre>
+        </div>`,
+    });
+    new Vue({
+      el: "#app",
+    });
+  </script>
+</body>
+
+</html>

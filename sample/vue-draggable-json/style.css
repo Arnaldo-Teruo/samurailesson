@@ -1,0 +1,16 @@
+.fa-grip-vertical {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.area {
+  width: 1500px;
+}
+.list-col1 i {
+  color: orange;
+}
+.list-col2 i {
+  color: skyblue;
+}
+.list-col3 i {
+  color: brown;
+}
