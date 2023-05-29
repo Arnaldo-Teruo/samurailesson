@@ -1,0 +1,458 @@
+/* -----  共通項目  ----- */
+
+* {
+    font-size: 24px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+}
+
+body {
+    background-color: #0000008e;
+}
+
+
+main {
+    padding-top: 8rem;
+}
+
+
+.color {
+    background-color: #ffffff8e;
+}
+
+.f-c {
+    color: #ffffff;
+}
+
+.blod {
+    font-weight: bold;
+}
+
+.f-color {
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.f-color:hover {
+    color: #000000;
+}
+
+section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+h2,
+h4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message-container {
+    position: relative;
+}
+
+
+/*---下線用---*/
+#box {
+    display: block;
+    height: 10px;
+    background: transparent;
+    animation-name: expansion;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-delay: .5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes expansion {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: 100%;
+        background: #0000b1;
+    }
+}
+
+.animate {
+    margin-bottom: 0.6rem;
+    display: block;
+    position: relative;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.animate:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0;
+    left: 50%;
+    background-color: #0000b1;
+    animation: stretch 2s linear infinite;
+}
+
+@keyframes stretch {
+    0% {
+        left: 50%;
+        width: 0;
+    }
+
+    50% {
+        left: 0;
+        width: 100%;
+    }
+
+    100% {
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+/*---下線用ここまで---*/
+
+@media screen and (min-width: 640px) {
+    .message-container {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (max-width: 668px) {
+    h1.display-1 {
+        text-align: center;
+    }
+
+    .f-size {
+        font-size: 0.9rem;
+    }
+
+    .message-container {
+        transform: translateY(-50%);
+    }
+
+    main {
+        padding-top: 4rem;
+    }
+}
+
+@media screen and (max-width: 668px) {
+    .animate2 {
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        display: block;
+        position: relative;
+        height: 10px;
+        width: 100%;
+        overflow: hidden;
+        background-color: transparent;
+    }
+
+    .animate2:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 0;
+        left: 50%;
+        background-color: #0000b1;
+        animation: stretch 2s linear infinite;
+    }
+
+    @keyframes stretch {
+        0% {
+            left: 50%;
+            width: 0;
+        }
+
+        50% {
+            left: 0;
+            width: 100%;
+        }
+
+        100% {
+            left: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    * {
+        font-size: 16px;
+    }
+
+    h2,
+    h4 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .my-5 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .py-5 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+}
+
+
+/* -----　indexページ　----- */
+.f-b {
+    color: #000;
+}
+
+.teruoicon {
+    width: 37% !important;
+}
+
+.about {
+    background-color: #0000b1;
+    border-radius: 25px;
+}
+
+.cord-color {
+    background-color: #0000b1;
+
+}
+
+.introduction {
+    line-height: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+
+.self-shot {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 95px 0px 95px 0px;
+}
+
+.border-right {
+    border-right: 2.5px solid black;
+}
+
+.border-left {
+    border-left: 2.5px solid black;
+}
+
+/* -----　メインメッセージの動き----- */
+
+.message-container h1 {
+    opacity: 0;
+    animation: fade-in 2s forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* -----　メインメッセージの動きここまで----- */
+
+.form-floating {
+    margin-bottom: 0.5rem;
+
+    >label {
+        color: black;
+    }
+
+    >.form-control {
+        color: gray;
+    }
+}
+
+@media screen and (max-width: 668px) {
+
+    /* .h2-size{
+        margin-bottom: 1rem !important;
+    } */
+    .message-container {
+        position: absolute;
+        width: 100% !important;
+        margin-left: 0 !important;
+        top: 102%;
+    }
+    h1 {
+        font-size: 1.5rem !important;
+        text-align: center;
+        margin-bottom: 0 !important;
+    }
+
+    .message-container h2 {
+        font-size: 1.5rem !important;
+        text-align: center;
+        padding-left: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .carousel-size {
+        width: 80% !important;
+        /* padding: 0rem !important; */
+    }
+
+    .carousel-title {
+        position: absolute;
+        top: -180%;
+        right: 0;
+        left: 0;
+    }
+
+    .border-right {
+        border-right: none;
+    }
+
+    .border-left {
+        border-left: none;
+    }
+
+    .spnone {
+        display: none;
+    }
+}
+
+/* -----　indexページここまで　----- */
+
+
+/* -----  ポートフォリオ一覧  ----- */
+/* -----  ポートフォリオ一覧画像エフェクト  ----- */
+
+
+.image-container {
+    position: relative;
+}
+
+.image-container:hover img {
+    filter: brightness(50%);
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(20px);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+.image-container:hover .overlay-text {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+}
+
+/* -----  ポートフォリオ一覧画像エフェクト  ----- */
+
+/* -----  ポートフォリオ一覧ここまで  ----- */
+
+
+/* -----  ブログ一覧  ----- */
+
+.my-card-img {
+    width: 320px;
+}
+
+@media screen and (max-width: 768px) {
+    .my-card {
+        max-width: 80% !important;
+    }
+
+    .my-card-img {
+        width: 240px;
+    }
+
+    .my-card-position {
+        text-align: center;
+        margin-top: 1rem !important;
+    }
+}
+
+
+/* -----  ブログ一覧ここまで  ----- */
+
+
+/* -----  ブログ記事  ----- */
+
+.blog {
+    margin: 0px auto 0px auto;
+}
+
+@media screen and (max-width: 768px) {
+    .p-size {
+        width: 90% !important;
+        line-height: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+}
+
+/* -----  ブログ一覧ここまで  ----- */
+
+.btn-box {
+    /*アニメーションの起点とするためrelativeを指定*/
+    position: relative;
+    overflow: hidden;
+    /*ボタンの形状*/
+    text-decoration: none;
+    display: inline-block;
+    border: 3px solid #0000b1;
+    /* ボーダーの色と太さ */
+    padding: 10px 30px;
+    text-align: center;
+    outline: none;
+    /*アニメーションの指定*/
+    transition: ease .4s;
+}
+
+/*ボタン内spanの形状*/
+.btn-box span {
+    position: relative;
+    z-index: 100;
+    /*z-indexの数値をあげて文字を背景よりも手前に表示*/
+    color: #fff;
+}
+
+
+/*== 背景が流れる（中央から外） */
+
+.bgcenterout:before {
+    content: '';
+    /*絶対配置で位置を指定*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    /*色や形状*/
+    background: #0000b1;
+    width: 100%;
+    height: 100%;
+    /*アニメーション*/
+    transition: transform .6s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+    transform: scale(0, 0);
+    transform-origin: center;
+}
+
+/*hoverした際の形状*/
+.bgcenterout:hover:before {
+    transform: scale(1, 1);
+}

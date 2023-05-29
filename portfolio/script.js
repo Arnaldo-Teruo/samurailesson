@@ -1,3 +1,37 @@
+// HEROメッセージエフェクト
+window.addEventListener('DOMContentLoaded', (event) => {
+    const message = document.querySelector('.message-container h1');
+    let messageText = message.textContent;
+    message.textContent = '';
+    let i = 0;
+
+    const messageb = document.querySelector('.message-container h2');
+    let bmessageText = messageb.textContent;
+    messageb.textContent = '';
+    let b = 0;
+
+    const typingEffectb = () => {
+        if (b < bmessageText.length) {
+            messageb.textContent += bmessageText[b];
+            b++;
+            setTimeout(typingEffectb, 200);
+        }
+    };
+
+    const typingEffect = () => {
+        if (i < messageText.length) {
+            message.textContent += messageText[i];
+            i++;
+            setTimeout(typingEffect, 200);
+        } else if (i == messageText.length) {
+            typingEffectb();
+        }
+    };
+
+    typingEffect();
+});
+
+// ブログ一覧サイドバーの位置変更
 window.addEventListener('DOMContentLoaded', (event) => {
     // Bootstrapのmdブレークポイント
     const breakpoint = 768;
@@ -29,3 +63,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // ビューポートの幅が変更されたときに関数を実行
     mediaQuery.addListener(moveElement);
 });
+
